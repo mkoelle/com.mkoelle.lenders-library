@@ -36,9 +36,9 @@ export default defineComponent({
   props: {
     resources: {
       type: Object as PropType<Resource[]>,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 });
 </script>
 
