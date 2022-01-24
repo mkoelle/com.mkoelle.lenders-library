@@ -1,7 +1,6 @@
 <template>
   <div id="app" class="main">
     <Navbar></Navbar>
-    <router-view />
     <HomePage />
     <footer class="footer">
       <div class="container">
@@ -21,10 +20,12 @@
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 import Navbar from "@/navigation/Navbar.vue";
+import HomePage from "@/home/HomePage.vue";
 
 export default defineComponent({
   components: {
-    Navbar
+    Navbar,
+    HomePage
   }
 });
 </script>
