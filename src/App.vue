@@ -1,7 +1,46 @@
 <template>
   <div id="app" class="main">
     <Navbar></Navbar>
-    <HomePage />
+    <div class="container">
+      <div class="columns">
+        <div class="column is-9">
+          <div class="box content">
+            <article
+              class="post"
+              v-for="resource in resources"
+              :key="resource.name"
+            >
+              <h4>{{ resource.name }}</h4>
+              <div class="media">
+                <div class="media-left">
+                  <p class="image is-32x32">
+                    <img :src="resource.image" />
+                  </p>
+                </div>
+                <div class="media-content">
+                  <div class="content">{{ resource.description }}</div>
+                  <div class="content">
+                    <p>
+                      Provided by:
+                      <a href="#">@user</a>&nbsp;
+                      <span class="tag">Board Game</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="media-right">
+                  <span class="has-text-grey-light">
+                    <i class="fa fa-heart"></i> 1
+                  </span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="column has-text-centered wip">
+          <div class="box wip is-full-height"></div>
+        </div>
+      </div>
+    </div>
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
@@ -18,14 +57,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
-import Navbar from "@/navigation/Navbar.vue";
-import HomePage from "@/home/HomePage.vue";
+import { defineComponent, ref } from "@vue/composition-api";
+import Navbar from "./components/Navbar.vue";
+import { data } from "./shared/data";
+import { Resource } from "./shared/interfaces";
 
 export default defineComponent({
   components: {
-    Navbar,
-    HomePage
+    Navbar
+  },
+  setup() {
+    const resources = ref<Resource[]>([]);
+    const fetchData = async (): Promise<void> => {
+      resources.value = (await data.getResources()) as Array<Resource>;
+    };
+    fetchData();
+    return {
+      resources
+    };
   }
 });
 </script>

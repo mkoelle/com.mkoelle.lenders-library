@@ -54,7 +54,6 @@
             <a class="navbar-item is-active" href="#">Popular</a>
             <a class="navbar-item" href="#">Recent</a>
             <a class="navbar-item" href="#">Rising</a>
-            <a class="navbar-item" href="#">Catalog</a>
           </div>
           <div class="navbar-end">
             <div class="navbar-item">
