@@ -3,9 +3,6 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import "./assets/main.scss";
 
-import VueCompositionApi from "@vue/composition-api";
-Vue.use(VueCompositionApi);
-
 Vue.config.productionTip = false;
 
 new Vue({

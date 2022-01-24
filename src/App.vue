@@ -57,26 +57,28 @@
 </template>
 
 <script lang="ts">
-import { createComponent, ref } from "@vue/composition-api";
+import { Component, Vue } from "vue-property-decorator";
 import Navbar from "./components/Navbar.vue";
 import { data } from "./shared/data";
 import { Resource } from "./shared/interfaces";
 
-export default createComponent({
+@Component({
   components: {
     Navbar
-  },
-  setup() {
-    const resources = ref<Resource[]>([]);
-    const fetchData = async (): Promise<void> => {
-      resources.value = (await data.getResources()) as Array<Resource>;
-    };
-    fetchData();
-    return {
-      resources
-    };
   }
-});
+})
+export default class App extends Vue {
+  resources: Array<Resource> = new Array<Resource>();
+
+  public async loadResources(): Promise<void> {
+    this.resources = new Array<Resource>();
+    this.resources = (await data.getResources()) as Array<Resource>;
+  }
+
+  public async created(): Promise<void> {
+    await this.loadResources();
+  }
+}
 </script>
 
 <style lang="scss">

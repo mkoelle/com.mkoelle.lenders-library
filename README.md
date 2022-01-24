@@ -85,12 +85,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [Vue API calls in a smart way](https://medium.com/canariasjs/vue-api-calls-in-a-smart-way-8d521812c322)
 - [Setting Up API Mocking With Mirage JS And Vue.js](https://www.smashingmagazine.com/2020/02/api-mocking-mirage-vue-javascript/)
 - [cloudfront using orign access identity](https://www.thecuriousdev.com/blog/2019/cloudfront-using-origin-access-identity/)
-- [Clean, Scalable Forms with Vue Composition API](https://vuejsdevelopers.com/2020/03/31/vue-js-form-composition-api/)
-
-## Design Choices
-
-- No longer using `vue-class-component` as composition replaces it
-  - [[Abandoned] Class API proposal](https://github.com/vuejs/rfcs/pull/17)
 
 ## Possibly Similar Apps
 
