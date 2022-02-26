@@ -1,6 +1,6 @@
 import React from 'react';
 
-function App() {
+function Lendable() {
     return (
         <article
             className="post"
@@ -34,4 +34,4 @@ function App() {
     );
 }
 
-export default App;
+export default Lendable;

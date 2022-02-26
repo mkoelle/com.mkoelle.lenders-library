@@ -4,7 +4,7 @@ import './App.css';
 import 'bulma/css/bulma.min.css'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
-import Rentable from './components/rentables/Rentable'
+import Rentable from './components/lendables/Lendable'
 
 function App() {
   return (
