@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../assets/logo.png'
 
-function App() {
+function Navbar() {
   return (
     <React.Fragment>
     <nav className="navbar topNav">
@@ -76,4 +76,4 @@ function App() {
   );
 }
 
-export default App;
+export default Navbar;
