@@ -11,7 +11,7 @@ npm install
 ### Compiles and hot-reloads for development
 
 ```shell
-npm run serve
+npm run start
 ```
 
 ### Compiles and minifies for production
@@ -67,8 +67,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Authenticated functionality
 
-- Owners should be able to list an item as availabile for use.
-- Users should be able to see what items are currently avaialble (not checked out).
+- Owners should be able to list an item as available for use.
+- Users should be able to see what items are currently available (not checked out).
 - Users should be able to reserve or check out items.
 - Users should be able to see what items have been checked out to them.
 - Owners should be able to see who has an item currently checked out.
@@ -84,7 +84,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [How to write a Vue.js app completely in TypeScript](https://blog.logrocket.com/how-to-write-a-vue-js-app-completely-in-typescript/)
 - [Vue API calls in a smart way](https://medium.com/canariasjs/vue-api-calls-in-a-smart-way-8d521812c322)
 - [Setting Up API Mocking With Mirage JS And Vue.js](https://www.smashingmagazine.com/2020/02/api-mocking-mirage-vue-javascript/)
-- [cloudfront using orign access identity](https://www.thecuriousdev.com/blog/2019/cloudfront-using-origin-access-identity/)
+- [cloudfront using origin access identity](https://www.thecuriousdev.com/blog/2019/cloudfront-using-origin-access-identity/)
+- [Resize images with sharp](https://www.npmjs.com/package/sharp)
 
 ## Possibly Similar Apps
 
