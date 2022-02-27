@@ -26,11 +26,6 @@ function App() {
         </div>
         <Footer />
       </main>
-
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" data-testid='logo' />
-      </header>
-
     </div>
   );
 }
