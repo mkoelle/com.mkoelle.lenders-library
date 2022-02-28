@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './placeholder.png';
 import './App.css';
 import 'bulma/css/bulma.min.css'
 import Navbar from './components/layout/Navbar'
@@ -12,15 +11,14 @@ function App() {
 
       <main className="main">
         <Navbar></Navbar>
-        <div className="container">
+        <div className="container is-max-widescreen">
           <div className="columns">
             <div className="column is-9">
               <div className="box content">
-                <Rentable />
+                  <ul className='block-list'>
+                    <Rentable />
+                  </ul>
               </div>
-            </div>
-            <div className="column has-text-centered wip">
-              <div className="box wip is-full-height"></div>
             </div>
           </div>
         </div>

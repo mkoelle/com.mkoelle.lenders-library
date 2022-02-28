@@ -2,16 +2,21 @@ import React from 'react';
 
 function Lendable() {
     return (
-        <article
-            className="post"
-            v-for="resource in resources"
-        // :key="resource.name"
+        <li
+            className="card" //prev post
         >
-            <h4>things</h4>
+            <header className='card-header'>
+                <p className='card-header-title'>The things</p>
+                <div className="card-header-icon" aria-label="more options">
+                <span className="has-text-grey-light">
+                        <i className="fa fa-heart"></i> 1
+                    </span>
+                </div>
+            </header>
             <div className="media">
                 <div className="media-left">
                     <p className="image is-32x32">
-                        {/* <img :src="resource.image" /> */}
+                       <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder"/>
                     </p>
                 </div>
                 <div className="media-content">
@@ -24,13 +29,8 @@ function Lendable() {
                         </p>
                     </div>
                 </div>
-                <div className="media-right">
-                    <span className="has-text-grey-light">
-                        <i className="fa fa-heart"></i> 1
-                    </span>
-                </div>
             </div>
-        </article>
+        </li>
     );
 }
 
