@@ -15,7 +15,7 @@ function Navbar() {
             <p className="title is-3 nav-title">Lenders Library</p>
           </a>
           <div
-            className="navbar-burger burger"
+           className={`navbar-burger burger ${navOpen && "is-active"}`}
             onClick={() => setNavOpen(!navOpen)}
             data-target="topNav"
           >
@@ -49,26 +49,6 @@ function Navbar() {
                   </a>
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <nav className="navbar is-hidden-mobile is-hidden-tablet-only">
-      <div className="container">
-        <div className="navbar-menu">
-          <div className="navbar-start">
-            <a className="navbar-item is-active" href="#">Popular</a>
-            <a className="navbar-item" href="#">Recent</a>
-            <a className="navbar-item" href="#">Rising</a>
-          </div>
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <input
-                className="input"
-                type="search"
-                placeholder="Search library..."
-              />
             </div>
           </div>
         </div>

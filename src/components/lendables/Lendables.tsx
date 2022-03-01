@@ -22,9 +22,27 @@ type Props = {
 };
 
 
-const Lendables = ({className = ''}: Props) => {
+const Lendables = ({ className = '' }: Props) => {
     return (
         <div className={`box content ${className}`}>
+            <nav className="navbar">
+                <div className="navbar-menu is-active">
+                    <div className="navbar-start">
+                        <a className="navbar-item is-active" href="#">Popular</a>
+                        <a className="navbar-item" href="#">Recent</a>
+                        <a className="navbar-item" href="#">Rising</a>
+                    </div>
+                    <div className="navbar-end">
+                        <div className="navbar-item">
+                            <input
+                                className="input"
+                                type="search"
+                                placeholder="Search library..."
+                            />
+                        </div>
+                    </div>
+                </div>
+            </nav>
             <ul className='block-list'>
                 {MOCK_LENDABLES.map(lendable =>
                     <Lendable
