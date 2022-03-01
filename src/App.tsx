@@ -7,24 +7,19 @@ import Rentable from './components/lendables/Lendable'
 
 function App() {
   return (
-    <div className="App">
-
-      <main className="main">
-        <Navbar></Navbar>
-        <div className="container is-max-widescreen">
-          <div className="columns">
-            <div className="column is-9">
-              <div className="box content">
-                  <ul className='block-list'>
-                    <Rentable />
-                  </ul>
-              </div>
+    <main className="App main">
+      <Navbar></Navbar>
+      <div className="container is-fluid columns">
+          <div className="column">
+            <div className="box content">
+              <ul className='block-list'>
+                <Rentable />
+              </ul>
             </div>
-          </div>
         </div>
-        <Footer />
-      </main>
-    </div>
+      </div>
+      <Footer />
+    </main>
   );
 }
 
