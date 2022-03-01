@@ -9,7 +9,7 @@ function App() {
   return (
     <main className="App main">
       <Navbar></Navbar>
-      <div className="container is-fluid columns">
+      <div className="container is-fullhd columns">
         <div className="column">
           <Lendables />
         </div>
