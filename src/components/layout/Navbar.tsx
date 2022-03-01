@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from '../../assets/logo.png'
 import styles from'./Navbar.module.css'
 
 function Navbar() {
+  const [navOpen, setNavOpen] = useState(false)
+
   return (
     <React.Fragment>
     <nav className="navbar topNav">
@@ -14,7 +16,7 @@ function Navbar() {
           </a>
           <div
             className="navbar-burger burger"
-            // @click="showNav = !showNav"
+            onClick={() => setNavOpen(!navOpen)}
             data-target="topNav"
           >
             <span></span>
@@ -22,8 +24,7 @@ function Navbar() {
             <span></span>
           </div>
         </div>
-        <div id="topNav" className="navbar-menu" > 
-         {/* :className="{ 'is-active': showNav }"> */}
+        <div id="topNav" className={`navbar-menu ${navOpen && "is-active"}`} > 
           <div className="navbar-start">
             <a className="navbar-item" href="#">Home</a>
             <a className="navbar-item" href="#">Tabs</a>
