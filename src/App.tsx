@@ -8,7 +8,7 @@ import Lendables from './components/lendables/Lendables'
 function App() {
   return (
     <main className="App main">
-      <Navbar></Navbar>
+      <Navbar />
       <div className="container is-fullhd columns">
           <Lendables className='column' />
       </div>
