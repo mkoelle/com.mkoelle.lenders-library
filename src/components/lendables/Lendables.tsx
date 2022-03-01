@@ -17,10 +17,14 @@ const MOCK_LENDABLES = [
     }
 ]
 
+type Props = {
+    className?: string;
+};
 
-const Lendables = () => {
+
+const Lendables = ({className = ''}: Props) => {
     return (
-        <div className="box content">
+        <div className={`box content ${className}`}>
             <ul className='block-list'>
                 {MOCK_LENDABLES.map(lendable =>
                     <Lendable

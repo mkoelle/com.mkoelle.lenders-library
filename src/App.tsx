@@ -10,9 +10,7 @@ function App() {
     <main className="App main">
       <Navbar></Navbar>
       <div className="container is-fullhd columns">
-        <div className="column">
-          <Lendables />
-        </div>
+          <Lendables className='column' />
       </div>
       <Footer />
     </main>
