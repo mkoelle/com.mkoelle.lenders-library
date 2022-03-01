@@ -9,8 +9,10 @@ function App() {
   return (
     <main className="App main">
       <Navbar />
-      <div className="container is-fullhd columns">
+      <div className="container is-fullhd">
+        <div className='columns'>
           <Lendables className='column' />
+        </div>
       </div>
       <Footer />
     </main>
