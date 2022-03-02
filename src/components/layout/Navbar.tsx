@@ -10,7 +10,7 @@ function Navbar() {
     <nav className="navbar topNav">
       <div className="container">
         <div className="navbar-brand">
-          <a className="navbar-item" href="#">
+          <a className="navbar-item" href="/#">
             <img  width="28" height="28" className={styles.logo} alt='logo' src={logo}/>
             <p className="title is-3 nav-title">Lenders Library</p>
           </a>
@@ -26,22 +26,22 @@ function Navbar() {
         </div>
         <div id="topNav" className={`navbar-menu ${navOpen && "is-active"}`} > 
           <div className="navbar-start">
-            <a className="navbar-item" href="#">Home</a>
-            <a className="navbar-item" href="#">Tabs</a>
+            <a className="navbar-item" href="/#">Home</a>
+            <a className="navbar-item" href="/#">Tabs</a>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="field is-grouped">
                 <p className="control">
-                  <a className="button is-small">
+                  <a className="button is-small" href="/#">
                     <span className="icon">
                       <i className="fa fa-user-plus"></i>
                     </span>
-                    <span>Register</span>
+                    <span>Register</span> 
                   </a>
                 </p>
                 <p className="control">
-                  <a className="button is-small login">
+                  <a className="button is-small login" href="/#">
                     <span className="icon">
                       <i className="fa fa-user"></i>
                     </span>
