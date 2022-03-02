@@ -4,6 +4,7 @@ import 'bulma/css/bulma.min.css'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Lendables from './components/lendables/Lendables'
+import Toast from './components/layout/Toast'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         </div>
       </div>
       <Footer />
+      <Toast />
     </main>
   );
 }
