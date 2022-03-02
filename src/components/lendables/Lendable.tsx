@@ -10,7 +10,7 @@ type Props = {
 
 function Lendable({ name, image, description, lender, tags }: Props) {
     return (
-        <li className="card columns" id={name} key={name}>
+        <li className="card columns" id={name} >
             <div className="card-image column is-narrow-mobile">
                 <figure className="image">
                     <img src={image} alt={name} />
