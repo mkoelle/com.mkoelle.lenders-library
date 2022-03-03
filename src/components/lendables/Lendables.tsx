@@ -1,4 +1,6 @@
 import Lendable from './Lendable'
+import Toast from '../layout/Toast'
+import { useState } from 'react';
 
 const MOCK_LENDABLES = [
     {
@@ -23,7 +25,10 @@ type Props = {
 
 
 const Lendables = ({ className = '' }: Props) => {
+    const [showToast, setShowToast] = useState(true)
     return (
+        <>
+        {showToast && <Toast onClose={()=>{setShowToast(false)}}/>}
         <div className={`box content ${className}`}>
             <nav className="navbar">
                 <div className="navbar-menu is-active">
@@ -55,6 +60,7 @@ const Lendables = ({ className = '' }: Props) => {
                     />)}
             </ul>
         </div>
+        </>
     )
 }
 

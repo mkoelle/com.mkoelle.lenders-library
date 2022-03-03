@@ -13,7 +13,7 @@
 
 .toast.hide {
   -webkit-animation: fadeout 0.5s 2.5s;
-  animation: fadeout 0.5s 2.5s;
+  animation: fadeout 2s;
 }
 
 @-webkit-keyframes fadein {
