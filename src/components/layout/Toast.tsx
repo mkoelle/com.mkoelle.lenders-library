@@ -17,22 +17,20 @@ const Toast = ({ text, className, onClose = () => {} }: Props) => {
 
     const isLoading = status === 'LOADING'
     const isClosing = status === 'CLOSING'
-    const classes=`notification  is-fullwidth ${className ?? 'is-primary'} ${style.toast} ${isLoading ? style.show : ''}  ${isClosing ? style.hide : ''}`
+    const classes=`notification ${className ?? 'is-primary'} ${style.toast} ${isLoading ? style.show : ''}  ${isClosing ? style.hide : ''}`
 
     useEffect(() => {
         if (timeLeft === 150) setStatus('CLOSING')
         if (timeLeft < 0) onClose()
-
         const timer = setTimeout(() => {
             setTimeLeft(timeLeft - 1)
         }, 10);
-
         return () => clearTimeout(timer);
     }, [timeLeft])
 
     return ReactDOM.createPortal((
         <div className={classes}>
-            <button className="delete" title="delete"></button>
+            <button className="delete" title="dismiss" onClick={onClose}></button>
             {text}
             <progress className={`progress ${className ?? 'is-primary'}`} value={timeLeft} max="1000">{timeLeft/10}%</progress>
         </div>
