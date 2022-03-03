@@ -1,6 +1,7 @@
 import Lendable from './Lendable'
 import Toast from '../layout/Toast'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useHTTP from '../../hooks/use-http';
 
 const MOCK_LENDABLES = [
     {
@@ -25,10 +26,29 @@ type Props = {
 
 
 const Lendables = ({ className = '' }: Props) => {
-    const [showToast, setShowToast] = useState(true)
+    const [lendables, setLendables] = useState([] as any[])
+
+    const {isLoading, error, sendRequest: fetchLendables} = useHTTP()
+
+    useEffect(() => {
+        const transformLendables = (data:any) => {
+            setLendables(data)
+        }
+        fetchLendables({url:'http://localhost:3031/lendables'}, transformLendables)
+    }, [fetchLendables])
+
+    useEffect(() => {
+        if(error) {
+            setShowToast(true)
+            setLendables(MOCK_LENDABLES)
+        }
+    }, [error])
+
+    const [showToast, setShowToast] = useState(false)
     return (
         <>
-        {showToast && <Toast onClose={()=>{setShowToast(false)}}/>}
+        {(showToast && error) && <Toast onClose={()=>{setShowToast(false)}}/>}
+     
         <div className={`box content ${className}`}>
             <nav className="navbar">
                 <div className="navbar-menu is-active">
@@ -49,7 +69,10 @@ const Lendables = ({ className = '' }: Props) => {
                 </div>
             </nav>
             <ul className='block-list'>
-                {MOCK_LENDABLES.map(lendable =>
+                {isLoading && <li> LOADING</li>}
+                {error && <li>{error}</li>}
+
+                {lendables.map(lendable =>
                     <Lendable
                         key={lendable.name}
                         name={lendable.name}
