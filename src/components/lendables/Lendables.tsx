@@ -47,7 +47,7 @@ const Lendables = ({ className = '' }: Props) => {
     const [showToast, setShowToast] = useState(false)
     return (
         <>
-        {(showToast && error) && <Toast className='is-danger' text={error} onClose={()=>{setShowToast(false)}}/>}
+        {(showToast && error) && <Toast className='is-danger' text={error} onClose={()=>{setShowToast(false)} }/>}
      
         <div className={`box content ${className}`}>
             <nav className="navbar">
