@@ -34,7 +34,7 @@ const Lendables = ({ className = '' }: Props) => {
         const transformLendables = (data:any) => {
             setLendables(data)
         }
-        fetchLendables({url:'http://localhost:3031/lendables'}, transformLendables)
+        fetchLendables({url:'http://localhost:3030/lendables'}, transformLendables)
     }, [fetchLendables])
 
     useEffect(() => {
