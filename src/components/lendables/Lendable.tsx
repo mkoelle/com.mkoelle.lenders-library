@@ -27,11 +27,11 @@ function Lendable({ name, image, description, lender, tags }: Props) {
             </header>
             <div className="card-content">
                 <div className="content">{description}</div>
-                <div className="content">
+                <div className="content tags">
                     <p>
                         Provided by:
                         <a href="/#">@{lender}</a>&nbsp;
-                        {tags.map(tag => <span className="tag">{tag}</span>)}
+                        {tags.map(tag => <span className="tag is-info is-light">{tag}</span>)}
                     </p>
                 </div>
             </div>
