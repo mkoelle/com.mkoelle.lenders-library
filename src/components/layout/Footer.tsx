@@ -8,8 +8,8 @@ function Footer() {
                     <p>
                         Footer footer footer
                         <br />
-                        <a href="#">Terms of service</a> |
-                        <a href="#">Privacy Policy</a>
+                        <a href="/#">Terms of service</a> |
+                        <a href="/#">Privacy Policy</a>
                     </p>
                 </div>
             </div>
