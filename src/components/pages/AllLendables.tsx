@@ -1,4 +1,4 @@
-import Lendable from './Lendable'
+import Lendable from '../lendables/Lendable'
 import Toast from '../layout/Toast'
 import { useEffect, useState } from 'react';
 import useHTTP from '../../hooks/use-http';
@@ -20,12 +20,7 @@ const MOCK_LENDABLES = [
     }
 ]
 
-type Props = {
-    className?: string;
-};
-
-
-const Lendables = ({ className = '' }: Props) => {
+const AllLendables = () => {
     const [lendables, setLendables] = useState([] as any[])
 
     const {isLoading, error, sendRequest: fetchLendables} = useHTTP()
@@ -49,7 +44,8 @@ const Lendables = ({ className = '' }: Props) => {
         <>
         {(showToast && error) && <Toast className='is-danger' text={error} onClose={()=>{setShowToast(false)} }/>}
      
-        <div className={`box content ${className}`}>
+        <div className='columns'>
+        <div className={`box content column`}>
             <nav className="navbar">
                 <div className="navbar-menu is-active">
                     <div className="navbar-start">
@@ -81,8 +77,9 @@ const Lendables = ({ className = '' }: Props) => {
                     />)}
             </ul>
         </div>
+        </div>
         </>
     )
 }
 
-export default Lendables
+export default AllLendables
