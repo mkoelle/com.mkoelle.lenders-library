@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 const useHTTP = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null as string|null)
-    const sendRequest = useCallback(async (requestConfig, applyData) => {
+    const sendRequest = useCallback(async (requestConfig: any, applyData: any) => { //TODO: add types
         setIsLoading(true)
         await fetch(requestConfig.url, {
             method: requestConfig.method ?? 'GET',

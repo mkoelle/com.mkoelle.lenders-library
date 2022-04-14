@@ -29,7 +29,7 @@ const AllLendables = () => {
         const transformLendables = (data:any) => {
             setLendables(data)
         }
-        fetchLendables({url:'http://localhost:3030/lendables'}, transformLendables)
+        fetchLendables({url:`${process.env.REACT_APP_API_URL}/lendables`}, transformLendables)
     }, [fetchLendables])
 
     useEffect(() => {
@@ -64,9 +64,10 @@ const AllLendables = () => {
                     </div>
                 </div>
             </nav>
+            {isLoading && <p>LOADING</p>}
             <ul className='block-list'>
-                {isLoading && <li> LOADING</li>}
-                {lendables.map(lendable =>
+           
+                {lendables?.map(lendable =>
                     <Lendable
                         key={lendable.name}
                         name={lendable.name}
