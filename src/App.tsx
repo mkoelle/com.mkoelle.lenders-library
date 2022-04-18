@@ -1,7 +1,5 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom'
-import './App.css';
-import 'bulma/css/bulma.min.css'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import AllLendables from './components/pages/AllLendables'
