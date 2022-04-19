@@ -27,7 +27,7 @@ function Navbar() {
         <div id="topNav" className={`navbar-menu ${navOpen && "is-active"}`} > 
           <div className="navbar-start">
             <a className="navbar-item" href="/#">Home</a>
-            <a className="navbar-item" href="/#">Tabs</a>
+            <a className="navbar-item" href="/About">About</a>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
