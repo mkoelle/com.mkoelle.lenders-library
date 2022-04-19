@@ -44,7 +44,7 @@ const AllLendables = () => {
         <>
         {(showToast && error) && <Toast className='is-danger' text={error} onClose={()=>{setShowToast(false)} }/>}
      
-        <div className='columns'>
+        <div className='columns page'>
         <div className={`box content column`}>
             <nav className="navbar">
                 <div className="navbar-menu is-active">
