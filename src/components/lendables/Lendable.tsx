@@ -31,8 +31,8 @@ function Lendable(props: Props) {
                     <p>
                         Provided by:
                         <a href="/#">@{props.lender}</a>&nbsp;
-                        {props.tags.map((tag, i) => <span className="tag is-info is-light" key={i}>{tag}</span>)}
                     </p>
+                    {props.tags.map((tag, i) => <span className="tag is-link is-light" key={i}>{tag}</span>)}
                 </div>
             </div>
             </div>
