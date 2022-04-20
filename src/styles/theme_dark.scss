@@ -21,6 +21,7 @@ $text-light: $mid;
 $text-strong: $light;
 
 // Link colors
+$link: $mid-lighter;
 $link-hover: $light;
 $link-hover-border: $mid-dark;
 
@@ -30,14 +31,14 @@ $link-focus-border: $blue;
 $link-active: $light;
 $link-active-border: $mid-light;
 
-.bd-navbar{
+.bd-navbar {
   background-color: $scheme-main-bis;
 
-  &.has-shadow{
+  &.has-shadow {
     box-shadow: none;
   }
 }
 
 body {
-    background: $dark-ter;
+  background: $dark-ter;
 }
