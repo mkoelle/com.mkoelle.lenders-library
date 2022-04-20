@@ -27,7 +27,7 @@ const Toast = ({ text, className, onClose = () => {}, duration = 2 }: Props) => 
             setTimeLeft(timeLeft - 1)
         }, 1);
         return () => clearTimeout(timer);
-    }, [timeLeft])
+    }, [timeLeft, onClose])
 
     return ReactDOM.createPortal((
         <div className={classes}>
