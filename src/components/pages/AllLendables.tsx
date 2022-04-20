@@ -3,6 +3,8 @@ import Toast from '../layout/Toast'
 import { useEffect, useState, useRef } from 'react';
 import useHTTP from '../../hooks/use-http';
 
+import styles from './AllLendables.module.css'
+
 const MOCK_LENDABLES = [
     {
         "name": "Item 1",
@@ -74,7 +76,7 @@ const AllLendables = () => {
                     </div>
                 </nav>
                 {isLoading && <p>LOADING</p>}
-                <ul className='block-list'>
+                <ul className={`block-list ${styles.list}`}>
                     {lendablesDisplay}
                 </ul>
             </div>
