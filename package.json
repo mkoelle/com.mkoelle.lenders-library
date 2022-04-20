@@ -4,12 +4,12 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.0.1",
-    "@testing-library/user-event": "^14.1.0",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.23",
-    "@types/react": "^18.0.4",
-    "@types/react-dom": "^18.0.0",
+    "@types/node": "^17.0.25",
+    "@types/react": "^18.0.5",
+    "@types/react-dom": "^18.0.1",
     "bulma": "^0.9.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -46,5 +46,8 @@
   "optionalDependencies": {
     "casual": "^1.6.2",
     "json-server": "^0.17.0"
+  },
+  "devDependencies": {
+    "sass": "^1.50.1"
   }
 }

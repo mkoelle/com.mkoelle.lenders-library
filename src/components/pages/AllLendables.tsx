@@ -1,7 +1,9 @@
 import Lendable from '../lendables/Lendable'
 import Toast from '../layout/Toast'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import useHTTP from '../../hooks/use-http';
+
+import styles from './AllLendables.module.css'
 
 const MOCK_LENDABLES = [
     {
@@ -22,62 +24,62 @@ const MOCK_LENDABLES = [
 
 const AllLendables = () => {
     const [lendables, setLendables] = useState([] as any[])
-
+    const [showToast, setShowToast] = useState(false)
     const {isLoading, error, sendRequest: fetchLendables} = useHTTP()
+    const didFetchLendables = useRef(false);
 
     useEffect(() => {
-        const transformLendables = (data:any) => {
-            setLendables(data)
+        if(didFetchLendables.current===false){
+            didFetchLendables.current = true;
+            fetchLendables({url:`${process.env.REACT_APP_API_URL}/lendables`}, setLendables)
         }
-        fetchLendables({url:`${process.env.REACT_APP_API_URL}/lendables`}, transformLendables)
-    }, [fetchLendables])
+    }, [fetchLendables,setLendables])
 
     useEffect(() => {
         if(error) {
             setShowToast(true)
             setLendables(MOCK_LENDABLES)
         }
-    }, [error])
+    }, [error,setShowToast,setLendables])
 
-    const [showToast, setShowToast] = useState(false)
+    const lendablesDisplay = lendables?.map((lendable, index) =>
+        <Lendable
+            key={lendable.name.replace(/\s/g, "_")}
+            name={lendable.name}
+            image={lendable.image}
+            description={lendable.description}
+            lender={lendable.lender}
+            tags={lendable.tags}
+        ></Lendable>)
+
     return (
         <>
         {(showToast && error) && <Toast className='is-danger' text={error} onClose={()=>{setShowToast(false)} }/>}
-     
-        <div className='columns'>
-        <div className={`box content column`}>
-            <nav className="navbar">
-                <div className="navbar-menu is-active">
-                    <div className="navbar-start">
-                        <a className="navbar-item is-active" href="/#">Popular</a>
-                        <a className="navbar-item" href="/#">Recent</a>
-                        <a className="navbar-item" href="/#">Rising</a>
-                    </div>
-                    <div className="navbar-end">
-                        <div className="navbar-item">
-                            <input
-                                className="input"
-                                type="search"
-                                placeholder="Search library..."
-                            />
+        <div className='columns page'>
+            <div className={`box content column`}>
+                <nav className="navbar">
+                    <div className="navbar-menu is-active">
+                        <div className="navbar-start">
+                            <a className="navbar-item is-active" href="/#">Popular</a>
+                            <a className="navbar-item" href="/#">Recent</a>
+                            <a className="navbar-item" href="/#">Rising</a>
+                        </div>
+                        <div className="navbar-end">
+                            <div className="navbar-item">
+                                <input
+                                    className="input"
+                                    type="search"
+                                    placeholder="Search library..."
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </nav>
-            {isLoading && <p>LOADING</p>}
-            <ul className='block-list'>
-           
-                {lendables?.map(lendable =>
-                    <Lendable
-                        key={lendable.name}
-                        name={lendable.name}
-                        image={lendable.image}
-                        description={lendable.description}
-                        lender={lendable.lender}
-                        tags={lendable.tags}
-                    />)}
-            </ul>
-        </div>
+                </nav>
+                {isLoading && <p>LOADING</p>}
+                <ul className={`block-list ${styles.list}`}>
+                    {lendablesDisplay}
+                </ul>
+            </div>
         </div>
         </>
     )
