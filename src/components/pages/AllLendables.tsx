@@ -1,8 +1,7 @@
 import Lendable from '../lendables/Lendable'
 import Toast from '../layout/Toast'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import useHTTP from '../../hooks/use-http';
-import Card from '../layout/Card'
 
 const MOCK_LENDABLES = [
     {
@@ -25,9 +24,13 @@ const AllLendables = () => {
     const [lendables, setLendables] = useState([] as any[])
     const [showToast, setShowToast] = useState(false)
     const {isLoading, error, sendRequest: fetchLendables} = useHTTP()
+    const didFetchLendables = useRef(false);
 
     useEffect(() => {
-        fetchLendables({url:`${process.env.REACT_APP_API_URL}/lendables`}, setLendables)
+        if(didFetchLendables.current===false){
+            didFetchLendables.current = true;
+            fetchLendables({url:`${process.env.REACT_APP_API_URL}/lendables`}, setLendables)
+        }
     }, [fetchLendables,setLendables])
 
     useEffect(() => {
