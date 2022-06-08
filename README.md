@@ -114,6 +114,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [cloudfront using origin access identity](https://www.thecuriousdev.com/blog/2019/cloudfront-using-origin-access-identity/)
 - [Resize images with sharp](https://www.npmjs.com/package/sharp)
 - [ForgeRock - appAuthHelper](https://github.com/ForgeRock/appAuthHelper)
+- [web worker react](https://javascript.plainenglish.io/web-worker-in-react-9b2efafe309c)
 
 ## Possibly Similar Apps
 
