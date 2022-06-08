@@ -113,6 +113,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [Setting Up API Mocking With Mirage JS And Vue.js](https://www.smashingmagazine.com/2020/02/api-mocking-mirage-vue-javascript/)
 - [cloudfront using origin access identity](https://www.thecuriousdev.com/blog/2019/cloudfront-using-origin-access-identity/)
 - [Resize images with sharp](https://www.npmjs.com/package/sharp)
+- [ForgeRock - appAuthHelper](https://github.com/ForgeRock/appAuthHelper)
 
 ## Possibly Similar Apps
 
