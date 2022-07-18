@@ -104,7 +104,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Future Stories
 
-- Donation system for maintenance and replacment of damaged items.
+- Donation system for maintenance and replacement of damaged items.
 
 ## Reading
 
@@ -115,6 +115,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [Resize images with sharp](https://www.npmjs.com/package/sharp)
 - [ForgeRock - appAuthHelper](https://github.com/ForgeRock/appAuthHelper)
 - [web worker react](https://javascript.plainenglish.io/web-worker-in-react-9b2efafe309c)
+- [aws-cognito-with-react](https://github.com/imMayyur/aws-cognito-with-react)
 
 ## Possibly Similar Apps
 

@@ -4,22 +4,13 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import AllLendables from './components/pages/AllLendables'
 import About from './components/pages/About'
+import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+
+Amplify.configure(awsExports);
 
 function App() {
-  const config = {
-    auth: {
-      clientId: "1-2.apps.googleusercontent.com",
-      authority: "https://accounts.google.com/o/oauth2/v2/auth",
-      redirectUri: "/",
-      navigateToLoginRequestUrl: false,
-      postLogoutRedirectUri: "/",
-      protocolMode: 'OIDC',
-      knownAuthorities: ["accounts.google.com"]
-    }, cache: {
-      cacheLocation: 'LocalStorage',
-      storeAuthStateInCookie: false
-    }
-  }
   
   return (
     < >
@@ -35,4 +26,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);

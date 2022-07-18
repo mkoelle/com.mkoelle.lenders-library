@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-commkoellelenderslib-dev-151004-authRole",
+      "UnauthRoleArn": "arn:aws:iam::116691476879:role/amplify-commkoellelenderslib-dev-151004-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::116691476879:role/amplify-commkoellelenderslib-dev-151004-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-commkoellelenderslib-dev-151004-deployment",
+      "UnauthRoleName": "amplify-commkoellelenderslib-dev-151004-unauthRole",
+      "StackName": "amplify-commkoellelenderslib-dev-151004",
+      "StackId": "arn:aws:cloudformation:us-east-1:116691476879:stack/amplify-commkoellelenderslib-dev-151004/731825d0-060c-11ed-b255-0ebc49a6fc73",
+      "AmplifyAppId": "d2wytlit1m5wp5"
+    },
+    "categories": {
+      "auth": {
+        "commkoellelenderslib6f51dfd6": {}
+      }
+    }
+  }
+}

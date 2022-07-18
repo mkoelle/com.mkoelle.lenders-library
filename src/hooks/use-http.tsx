@@ -17,7 +17,7 @@ const useHTTP = () => {
                 const data = await result.json()
                 setError(null)
                 applyData(data)
-            }).catch(error=> {
+            }).catch(error => {
                 setError(error.message)
                 applyData([])
             })
