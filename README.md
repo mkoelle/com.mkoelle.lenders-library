@@ -114,6 +114,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [cloudfront using origin access identity](https://www.thecuriousdev.com/blog/2019/cloudfront-using-origin-access-identity/)
 - [Resize images with sharp](https://www.npmjs.com/package/sharp)
 - [aws-cognito-with-react](https://github.com/imMayyur/aws-cognito-with-react)
+  - [Integrate the AWS Cognito Service with React JS pt1](https://blog.cloudthat.com/aws-cognito-service-with-react-js-application-setup/)
 - [Amazon Cognito automation with CloudFormation](https://georgemao.medium.com/amazon-cognito-automation-with-cloudformation-is-kind-of-tricky-heres-a-quick-example-65bdc61d39f7)
 
 ## Possibly Similar Apps
