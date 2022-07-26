@@ -4,7 +4,7 @@ export AWS_REGION=$region
 
 set -x
 
-BUCKET=$(aws cloudformation list-exports --query "Exports[?Name=='com-mkoelle-ll-content-bucket'].Value" --output text)
+BUCKET=$(aws cloudformation list-exports --query "Exports[?Name=='com-mkoelle-ll-site-content-bucket'].Value" --output text)
 
 npm run build -- --mode=development
 
