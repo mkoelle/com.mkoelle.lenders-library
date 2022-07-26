@@ -119,5 +119,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Possibly Similar Apps
 
-- [booktrader](https://github.com/joops75/booktrader)
+- [BookTrader](https://github.com/joops75/booktrader)
   - An app that facilitates the borrowing and lending of books between users.
