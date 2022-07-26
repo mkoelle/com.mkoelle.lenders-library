@@ -13,12 +13,10 @@ function Navbar() {
   useEffect(() => {
     getSession()
       .then((session: any) => {
-        console.log('Session: ', session);
-        console.log(session)
         setIsLoggedIn(true);
       })
       .catch((err: any) => {
-        console.log('Session: ', err);
+        alert(`Couldn't get session ${err.message}`);
         setIsLoggedIn(false);
       });
   }, [isLoggedIn, getSession]);

@@ -23,11 +23,7 @@ function Register() {
     );
     UserPool.signUp(username, password, attributeList, [] as CognitoUserAttribute[], (err, data) => {
       if (err) {
-        console.log(err);
-        alert("Couldn't sign up");
-      } else {
-        console.log(data);
-        alert('User Added Successfully');
+        alert(`Couldn't sign up ${err.message}`);
       }
     });
   };

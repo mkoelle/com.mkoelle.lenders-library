@@ -11,13 +11,10 @@ function Login() {
     event.preventDefault();
     authenticate(username, password)
     .then((data: any) => {
-      console.log(data);
-      alert('login success');
       window.location.reload();
     })
     .catch((err: any) => {
-      console.log(err);
-      alert('login failure');
+      alert(`login failure ${err.message}`);
     });
   };
 

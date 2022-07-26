@@ -116,6 +116,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [aws-cognito-with-react](https://github.com/imMayyur/aws-cognito-with-react)
   - [Integrate the AWS Cognito Service with React JS pt1](https://blog.cloudthat.com/aws-cognito-service-with-react-js-application-setup/)
 - [Amazon Cognito automation with CloudFormation](https://georgemao.medium.com/amazon-cognito-automation-with-cloudformation-is-kind-of-tricky-heres-a-quick-example-65bdc61d39f7)
+- [Cognito - Pre sign-up Lambda trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html)
 
 ## Possibly Similar Apps
 

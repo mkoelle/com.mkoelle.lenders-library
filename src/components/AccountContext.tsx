@@ -42,15 +42,14 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
 
       user.authenticateUser(authDetails, {
         onSuccess: (result) => {
-          console.log('login success', result);
           resolve(result);
         },
         onFailure: (err) => {
-          console.log('login failure', err);
+          alert(`Couldn't login ${err.message}`);
           reject(err);
         },
         newPasswordRequired: (data) => {
-          console.log('new password required', data);
+          alert(`new password required: ${data}`);
           resolve(data);
         },
       });
