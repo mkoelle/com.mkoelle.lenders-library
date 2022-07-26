@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "lenders-library - Cognito Pool and other Auth resources"
+Parameters:
+  GivenDomain:
+    Type: String
+    Description: The DNS name for the root of the site
+    ConstraintDescription: must be a valid DNS zone name.
+  GivenDomainDashed:
+    Type: String
+    Description: The DNS name for the root of the site but with underscores
+    ConstraintDescription: Dash separated version of the GivenDomain
+Resources:
+  CognitoPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UsernameConfiguration: 
+        CaseSensitive: false
+      UserPoolName: !Sub ${GivenDomainDashed}-user-pool
+      EnabledMfas:
+        - "SOFTWARE_TOKEN_MFA"
+      MfaConfiguration: "OPTIONAL"
+      # AutoVerifiedAttributes:
+      #   - email
+      AliasAttributes:
+        - email
+        - phone_number
+        - preferred_username
+      Schema:
+        - Name: email
+          AttributeDataType: String
+          Mutable: true
+          Required: true
+        - Name: name
+          AttributeDataType: String
+          Mutable: true
+          Required: true
+  CognitoPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId: !Ref CognitoPool
+      AllowedOAuthFlowsUserPoolClient: true
+      CallbackURLs:
+        - http://localhost:3000
+        - http://localhost:3001
+        - https://${GivenDomain}
+        - https://www.${GivenDomain}
+      AllowedOAuthFlows:
+        - code
+        - implicit
+      AllowedOAuthScopes:
+        - phone
+        - email
+        - openid
+        - profile
+      SupportedIdentityProviders:
+        - COGNITO
+        # - Google
+        # - Facebook
+        # - SignInWithApple
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: !Ref GivenDomainDashed
+      UserPoolId: !Ref CognitoPool
+Outputs:
+  CognitoUserPoolID:
+    Value: !Ref CognitoPool
+    Description: The UserPool ID
+    Export:
+      Name:
+        Fn::Sub: ${AWS::StackName}-userPool
+  CognitoAppClientID:
+    Value: !Ref CognitoPoolClient
+    Description: The app client
+    Export:
+      Name:
+        Fn::Sub: ${AWS::StackName}-clientId
+  HostedUIURL:
+    Value: !Sub https://${GivenDomainDashed}.auth.us-west-2.amazoncognito.com/login?client_id=${CognitoPoolClient}&response_type=code&scope=email+openid+phone+profile&redirect_uri=
+    Description: The hosted UI URL

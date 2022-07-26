@@ -22,8 +22,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "source ./scripts/load-env.sh && react-scripts start",
+    "build": "source ./scripts/load-env.sh && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "mock-backend": "npx json-server --watch ./mock-api/index.js --port 3030"
