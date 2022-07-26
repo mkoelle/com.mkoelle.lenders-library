@@ -26,26 +26,24 @@ function Navbar() {
 const login = isLoggedIn ? 
 ( <>
  <p className="control">
-  <a className="button is-small" href="/#">
     <span className="icon">
-      <i className="fa fa-user-minus"></i>
+      <i className="fa fa-user"></i>
     </span>
     <span>Welcome BOB</span> 
-  </a>
   </p>
     <p className="control">
-  <a className="button is-small" href="/#">
+  <a className="button is-small" href="/#" onClick={logout}>
     <span className="icon">
       <i className="fa fa-user-minus"></i>
     </span>
-    <button onClick={logout}>Logout</button>
+    <span>Logout</span>
   </a>
   </p>
 </>
 ) :
 (<>
   <p className="control">
-  <a className="button is-small" href="/#">
+  <a className="button is-small" href="/Register">
     <span className="icon">
       <i className="fa fa-user-plus"></i>
     </span>
@@ -53,7 +51,7 @@ const login = isLoggedIn ?
   </a>
   </p>
   <p className="control">
-  <a className="button is-small login" href="/#">
+  <a className="button is-small login" href="/Login">
     <span className="icon">
       <i className="fa fa-user"></i>
     </span>
