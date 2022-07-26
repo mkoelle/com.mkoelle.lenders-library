@@ -1,9 +1,66 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import logo from '../../assets/logo.png'
 import styles from'./Navbar.module.css'
 
+
+import { AccountContext } from '../AccountContext';
+
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [navOpen, setNavOpen] = useState(false)
+  const { getSession, logout } = useContext(AccountContext);
+
+  useEffect(() => {
+    getSession()
+      .then((session: any) => {
+        console.log('Session: ', session);
+        console.log(session)
+        setIsLoggedIn(true);
+      })
+      .catch((err: any) => {
+        console.log('Session: ', err);
+        setIsLoggedIn(false);
+      });
+  }, [isLoggedIn, getSession]);
+
+const login = isLoggedIn ? 
+( <>
+ <p className="control">
+  <a className="button is-small" href="/#">
+    <span className="icon">
+      <i className="fa fa-user-minus"></i>
+    </span>
+    <span>Welcome BOB</span> 
+  </a>
+  </p>
+    <p className="control">
+  <a className="button is-small" href="/#">
+    <span className="icon">
+      <i className="fa fa-user-minus"></i>
+    </span>
+    <button onClick={logout}>Logout</button>
+  </a>
+  </p>
+</>
+) :
+(<>
+  <p className="control">
+  <a className="button is-small" href="/#">
+    <span className="icon">
+      <i className="fa fa-user-plus"></i>
+    </span>
+    <span>Register</span> 
+  </a>
+  </p>
+  <p className="control">
+  <a className="button is-small login" href="/#">
+    <span className="icon">
+      <i className="fa fa-user"></i>
+    </span>
+    <span>Login</span>
+  </a>
+  </p>
+</>)
 
   return (
     <React.Fragment>
@@ -32,22 +89,7 @@ function Navbar() {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="field is-grouped">
-                <p className="control">
-                  <a className="button is-small" href="/#">
-                    <span className="icon">
-                      <i className="fa fa-user-plus"></i>
-                    </span>
-                    <span>Register</span> 
-                  </a>
-                </p>
-                <p className="control">
-                  <a className="button is-small login" href="/#">
-                    <span className="icon">
-                      <i className="fa fa-user"></i>
-                    </span>
-                    <span>Login</span>
-                  </a>
-                </p>
+                {login}
               </div>
             </div>
           </div>

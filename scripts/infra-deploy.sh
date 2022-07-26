@@ -15,14 +15,16 @@ export AWS_REGION=$region
 set -x
 
 HOSTEDZONE_ID=$(aws ssm get-parameter --name com-mkoelle-domains-hosted-zone-id --query "Parameter.Value" --output text)
-ROOT_DOMAIN=$(aws ssm get-parameter --name com-mkoelle-domains-hosted-zone-name --query "Parameter.Value" --output text)
+ROOT_DOMAIN=ll.$(aws ssm get-parameter --name com-mkoelle-domains-hosted-zone-name --query "Parameter.Value" --output text)
+ROOT_DOMAIN_UNDI=${ROOT_DOMAIN//[.]/-}
 
 aws cloudformation deploy \
   --region ${region} \
   --template-file infra/cfn/infra.yml \
   --stack-name com-mkoelle-ll \
   --parameter-overrides \
-      GivenDomain=ll.${ROOT_DOMAIN%?} \
+      GivenDomain=${ROOT_DOMAIN%?} \
+      GivenDomainUndi=${ROOT_DOMAIN_UNDI%?} \
       HostedZoneId=${HOSTEDZONE_ID} \
   --tags \
       Owner=mkoelle \

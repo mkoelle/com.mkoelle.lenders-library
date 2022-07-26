@@ -2,5 +2,8 @@
     "cSpell.words": [
         "Lendable",
         "Lendables"
-    ]
+    ],
+    "yaml.schemas": {
+        "cloudformation://schema/cloudformation": "file:///Users/koe7194/src/github.com/mkoelle/com.mkoelle.lenders-library/infra/cfn/infra.yml"
+    }
 }

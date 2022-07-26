@@ -5,6 +5,10 @@ Parameters:
     Type: String
     Description: The DNS name for the root of the site
     ConstraintDescription: must be a valid DNS zone name.
+  GivenDomainUndi:
+    Type: String
+    Description: The DNS name for the root of the site but with underscores
+    ConstraintDescription: must be a valid DNS zone name.
   HostedZoneId:
     Type: String
     Description: The Id of an Amazon Route 53 hosted zone to create the alias in.
@@ -90,6 +94,52 @@ Resources:
           AliasTarget:
             HostedZoneId: Z2FDTNDATAQYW2 # This is ALWAYS the cloudfront hosted zone ID
             DNSName: !GetAtt CDN.DomainName
+  CognitoPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UsernameConfiguration: 
+        CaseSensitive: false
+      UserPoolName: !Sub ${GivenDomainUndi}-user-pool
+      EnabledMfas:
+        - "SOFTWARE_TOKEN_MFA"
+      MfaConfiguration: "OPTIONAL"
+      # AutoVerifiedAttributes:
+      #   - email
+      Schema:
+        - Name: email
+          AttributeDataType: String
+          Mutable: true
+          Required: true
+        - Name: name
+          AttributeDataType: String
+          Mutable: true
+          Required: true
+  CognitoPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      UserPoolId: !Ref CognitoPool
+      AllowedOAuthFlowsUserPoolClient: true
+      CallbackURLs:
+        - http://localhost:3000
+        - http://localhost:3001
+      AllowedOAuthFlows:
+        - code
+        - implicit
+      AllowedOAuthScopes:
+        - phone
+        - email
+        - openid
+        - profile
+      SupportedIdentityProviders:
+        - COGNITO
+        # - Google
+        # - Facebook
+        # - SignInWithApple
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      Domain: !Ref GivenDomainUndi
+      UserPoolId: !Ref CognitoPool
 Outputs:
   BucketName:
     Description: "S3 Bucket Name"
@@ -106,3 +156,12 @@ Outputs:
     Export:
       Name:
         Fn::Sub: ${AWS::StackName}-cdn
+  CognitoUserPoolID:
+    Value: !Ref CognitoPool
+    Description: The UserPool ID
+  CognitoAppClientID:
+    Value: !Ref CognitoPoolClient
+    Description: The app client
+  HostedUIURL:
+    Value: !Sub https://${GivenDomainUndi}.auth.us-west-2.amazoncognito.com/login?client_id=${CognitoPoolClient}&response_type=code&scope=email+openid+phone+profile&redirect_uri=
+    Description: The hosted UI URL
