@@ -1,10 +1,6 @@
 import { useState,useContext } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { AccountContext } from '../AccountContext';
-
-
-
-
-
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -14,6 +10,7 @@ function Register() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [OTP, setOTP] = useState('');
   const { signUp, confirmRegistration } = useContext(AccountContext);
+  const navigate = useNavigate()
 
   const onSignup = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
@@ -24,10 +21,12 @@ function Register() {
   const onVerify = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     confirmRegistration(username,OTP)
-    setIsVerifying(false)
+    navigate("/Login")
   };
 
   const signupForm = (
+
+
     <form onSubmit={onSignup} className="box page">
 
       <h1 className="title has-text-centered is-size-2">Registration</h1>

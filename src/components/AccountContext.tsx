@@ -25,6 +25,7 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
           if (err) {
             reject(err);
           } else {
+            setIsLoggedIm(true)
             resolve(session);
           }
         });
@@ -92,7 +93,6 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
         alert("Couldn't verify account");
       } else {
         alert('Account verified successfully');
-        setIsLoggedIm(true)
       }
     });
   }
