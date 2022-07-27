@@ -6,6 +6,11 @@ import App from './App';
 
 import './styles/main.scss'
 
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = require('./mocks/browserWorker')
+  worker.start()
+}
+
 const container = document.getElementById('root');
 const root = createRoot(container!);
 

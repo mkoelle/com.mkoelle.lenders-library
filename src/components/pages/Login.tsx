@@ -1,22 +1,37 @@
 import { useContext, useState } from 'react';
 import { AccountContext } from '../AccountContext';
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
+  const navigate = useNavigate()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState<{code :string, name: string}|undefined>(undefined);
 
   const { authenticate } = useContext(AccountContext);
 
   const onSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     authenticate(username, password)
-    .then((data: any) => {
-      console.log('logged in')
+    .then(() => {
+      setAuthError(undefined)
+      navigate('/')
     })
-    .catch((err: any) => {
-      alert(`login failure ${err?.message ?? err}`);
+    .catch((err: {code :string, name: string}) => {
+      setAuthError(err)
     });
   };
+  let error
+  if (authError){
+    let message =  "Login failed, please check your username or password"
+    if(authError?.code !== "UserNotFoundException" &&
+      authError?.code !== "NotAuthorizedException") message = JSON.stringify(authError)
+    error = (
+      <div className='notification is-danger m-3'>
+        {message}
+      </div>
+    )
+  }
 
   return (
     <form onSubmit={onSubmit} className="box page">
@@ -55,6 +70,7 @@ function Login() {
         </p>
       </div>
       <button type="submit" className="button is-rounded is-outlined is-medium">Login</button>
+      {error}
     </form>
   );
 }

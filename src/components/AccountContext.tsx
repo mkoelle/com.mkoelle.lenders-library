@@ -53,11 +53,9 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
           resolve(result);
         },
         onFailure: (err) => {
-          alert(`Couldn't login ${err.message}`);
           reject(err);
         },
         newPasswordRequired: (data) => {
-          alert(`new password required: ${data}`);
           resolve(data);
         },
       });

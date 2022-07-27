@@ -15,6 +15,9 @@ function Register() {
   const onSignup = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     signUp(username,password,email,name)
+    .catch((_err: any) => {
+      return
+    })
     setIsVerifying(true)
   };
 
