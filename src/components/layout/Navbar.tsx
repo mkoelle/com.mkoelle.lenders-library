@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import logo from '../../assets/logo.png'
 import styles from'./Navbar.module.css'
 
@@ -6,20 +6,9 @@ import styles from'./Navbar.module.css'
 import { AccountContext } from '../AccountContext';
 
 function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [navOpen, setNavOpen] = useState(false)
-  const { getSession, logout } = useContext(AccountContext);
+  const { logout, isLoggedIn} = useContext(AccountContext);
 
-  useEffect(() => {
-    getSession()
-      .then((session: any) => {
-        setIsLoggedIn(true);
-      })
-      .catch((err: any) => {
-        if (err) alert(`Couldn't get session ${err?.message ?? err}`);
-        setIsLoggedIn(false);
-      });
-  }, [isLoggedIn, getSession]);
 
 const login = isLoggedIn ? 
 ( <>

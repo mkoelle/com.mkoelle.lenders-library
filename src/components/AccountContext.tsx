@@ -1,5 +1,5 @@
 import { AuthenticationDetails, CognitoUser , CognitoUserAttribute} from 'amazon-cognito-identity-js';
-import { createContext, JSXElementConstructor, ReactElement, ReactFragment, ReactPortal } from 'react';
+import { createContext, JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useState} from 'react';
 import UserPool from '../UserPool';
 
 interface IAuthContext {
@@ -7,12 +7,16 @@ interface IAuthContext {
     getSession?: any, 
     logout?: any,
     signUp?: any,
-    confirmRegistration?: any
+    confirmRegistration?: any,
+    isLoggedIn?: boolean
   }
 
 const AccountContext = createContext<IAuthContext>({});
 
 const Account = (props: { children: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }) => {
+
+  const [isLoggedIn, setIsLoggedIm]=useState(false)
+
   const getSession = async () => {
     await new Promise((resolve, reject) => {
       const user = UserPool.getCurrentUser();
@@ -44,6 +48,7 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
 
       user.authenticateUser(authDetails, {
         onSuccess: (result) => {
+          setIsLoggedIm(true)
           resolve(result);
         },
         onFailure: (err) => {
@@ -87,6 +92,7 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
         alert("Couldn't verify account");
       } else {
         alert('Account verified successfully');
+        setIsLoggedIm(true)
       }
     });
   }
@@ -94,11 +100,11 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
   const logout = () => {
     const user = UserPool.getCurrentUser();
     user?.signOut();
-    window.location.href = '/';
+    setIsLoggedIm(false)
   };
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout, signUp , confirmRegistration }}>
+    <AccountContext.Provider value={{ authenticate, getSession, logout, signUp , confirmRegistration, isLoggedIn }}>
       {props.children}
     </AccountContext.Provider>
   );

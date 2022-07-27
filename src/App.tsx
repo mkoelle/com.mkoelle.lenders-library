@@ -12,7 +12,7 @@ function App() {
   return (
     <Account>
       <Navbar />
-      <div className={`container is-fullhd`}>
+      <div className={`container is-fullhd is-fullwidth`}>
         <Routes>
           <Route path='/' element={<AllLendables />} />
           <Route path='about' element={<About />} />
