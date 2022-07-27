@@ -1,66 +1,83 @@
-import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
-import { useState } from 'react';
-import UserPool from '../../UserPool';
+import { useState,useContext } from 'react';
+import { AccountContext } from '../AccountContext';
+
+
+
+
+
 
 function Register() {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [OTP, setOTP] = useState('');
+  const { signUp, confirmRegistration } = useContext(AccountContext);
 
-  const onSubmit = (event: { preventDefault: () => void; }) => {
+  const onSignup = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    const attributeList = [];
-    attributeList.push(
-      new CognitoUserAttribute({
-        Name: 'email',
-        Value: email,
-      }),
-      new CognitoUserAttribute({
-        Name: 'name',
-        Value: name,
-      }),
-    );
-    UserPool.signUp(username, password, attributeList, [] as CognitoUserAttribute[], (err, data) => {
-      if (err) {
-        alert(`Couldn't sign up ${err.message}`);
-      }
-    });
+    signUp(username,password,email,name)
+    setIsVerifying(true)
   };
+
+  const onVerify = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    confirmRegistration(username,OTP)
+    setIsVerifying(false)
+  };
+
+  const signupForm = (
+    <form onSubmit={onSignup}>
+      UserName:
+      <input
+        type="text"
+        value={username.toLowerCase().trim()}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <br />
+      Name:
+      <input
+        type="text"
+        value={name.toLowerCase().trim()}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <br />
+      Email:
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <br />
+      Password:
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <br />
+      <button type="submit">Register</button>
+    </form>)
+
+    const verificationForm = (
+      <form onSubmit={onVerify}>
+      Enter the OTP:
+      <input
+        type="text"
+        value={OTP}
+        onChange={(e) => setOTP(e.target.value)}
+      />
+      <br />
+      <button type="submit">Verify</button>
+    </form>
+    )
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        UserName:
-        <input
-          type="text"
-          value={username.toLowerCase().trim()}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br />
-        Name:
-        <input
-          type="text"
-          value={name.toLowerCase().trim()}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <button type="submit">Register</button>
-      </form>
+        {isVerifying === false ? 
+        (signupForm) :
+        (verificationForm )}
     </div>
   );
 }

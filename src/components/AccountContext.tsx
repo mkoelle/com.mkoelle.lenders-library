@@ -1,11 +1,13 @@
-import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
+import { AuthenticationDetails, CognitoUser , CognitoUserAttribute} from 'amazon-cognito-identity-js';
 import { createContext, JSXElementConstructor, ReactElement, ReactFragment, ReactPortal } from 'react';
 import UserPool from '../UserPool';
 
 interface IAuthContext {
     authenticate?: any,
     getSession?: any, 
-    logout?: any
+    logout?: any,
+    signUp?: any,
+    confirmRegistration?: any
   }
 
 const AccountContext = createContext<IAuthContext>({});
@@ -28,7 +30,7 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
     });
   };
 
-  const authenticate = async (Username: any, Password: any) => {
+  const authenticate = async (Username: string, Password: string) => {
     await new Promise((resolve, reject) => {
       const user = new CognitoUser({
         Username,
@@ -56,6 +58,39 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
     });
   };
 
+  const signUp = async (userName: string, password: string, email:string, name:string) => {
+    const attributeList = [];
+    attributeList.push(
+      new CognitoUserAttribute({
+        Name: 'email',
+        Value: email,
+      }),
+      new CognitoUserAttribute({
+        Name: 'name',
+        Value: name,
+      }),
+    );
+    UserPool.signUp(userName, password, attributeList, [] as CognitoUserAttribute[], (err, data) => {
+      if (err) {
+        alert(`Couldn't sign up ${err.message}`);
+      }
+    });
+  };
+
+  const confirmRegistration = (userName: string, OTP: string) => {
+    const user = new CognitoUser({
+      Username: userName,
+      Pool: UserPool,
+    });
+    user.confirmRegistration(OTP, true, (err, data) => {
+      if (err) {
+        alert("Couldn't verify account");
+      } else {
+        alert('Account verified successfully');
+      }
+    });
+  }
+
   const logout = () => {
     const user = UserPool.getCurrentUser();
     user?.signOut();
@@ -63,7 +98,7 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
   };
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout }}>
+    <AccountContext.Provider value={{ authenticate, getSession, logout, signUp , confirmRegistration }}>
       {props.children}
     </AccountContext.Provider>
   );

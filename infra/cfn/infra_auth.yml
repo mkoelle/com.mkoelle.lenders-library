@@ -19,8 +19,8 @@ Resources:
       EnabledMfas:
         - "SOFTWARE_TOKEN_MFA"
       MfaConfiguration: "OPTIONAL"
-      # AutoVerifiedAttributes:
-      #   - email
+      AutoVerifiedAttributes:
+        - email
       AliasAttributes:
         - email
         - phone_number
