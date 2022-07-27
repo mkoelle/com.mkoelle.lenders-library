@@ -16,7 +16,7 @@ function Navbar() {
         setIsLoggedIn(true);
       })
       .catch((err: any) => {
-        alert(`Couldn't get session ${err.message}`);
+        if (err) alert(`Couldn't get session ${err?.message ?? err}`);
         setIsLoggedIn(false);
       });
   }, [isLoggedIn, getSession]);

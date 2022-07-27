@@ -14,30 +14,53 @@ function Login() {
       window.location.reload();
     })
     .catch((err: any) => {
-      alert(`login failure ${err.message}`);
+      alert(`login failure ${err?.message ?? err}`);
     });
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        UserName:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br />
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <>
+      <div className='box content page'>
+        <form onSubmit={onSubmit} className="">
+
+        <h1 className="title has-text-centered is-size-2">Login</h1>
+          <figure className="image container is-64x64">
+            <img src="img/placeholder.png" alt='Lenders Library Logo' />
+          </figure>
+          <div className="field">
+            <label className="label">User Name:</label>
+            <p className="control has-icons-left has-icons-right">
+            <input
+                className="input" 
+                type="email" 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Email"
+              />
+            <span className="icon is-small is-left">
+            <i className="fas fa-envelope"></i>
+            </span>
+            </p>
+          </div>
+          <div className="field">
+            <label className="label">Password:</label>
+            <p className="control has-icons-left">
+              <input
+                  className="input" 
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <button type="submit" className="button is-info is-rounded is-outlined is-medium">Login</button>
+        </form>
+        </div>
+    </>
   );
 }
 
