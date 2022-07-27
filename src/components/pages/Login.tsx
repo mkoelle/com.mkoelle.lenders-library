@@ -21,41 +21,41 @@ function Login() {
   return (
     <form onSubmit={onSubmit} className="box page">
       <h1 className="title has-text-centered is-size-2">Login</h1>
-        <figure className="image container is-64x64">
-          <img src="img/placeholder.png" alt='Lenders Library Logo' />
-        </figure>
-        <div className="field">
-          <label className="label">User Name:</label>
-          <p className="control has-icons-left has-icons-right">
+      <figure className="image container is-64x64">
+        <img src="img/placeholder.png" alt='Lenders Library Logo' />
+      </figure>
+      <div className="field">
+        <label className="label">User Name:</label>
+        <p className="control has-icons-left has-icons-right">
+        <input
+            className="input" 
+            type="text" 
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="User Name"
+          />
+        <span className="icon is-small is-left">
+          <i className="fas fa-dragon"></i>
+        </span>
+        </p>
+      </div>
+      <div className="field">
+        <label className="label">Password:</label>
+        <p className="control has-icons-left">
           <input
               className="input" 
-              type="text" 
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="User Name"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
             />
           <span className="icon is-small is-left">
-          <i className="fas fa-envelope"></i>
+            <i className="fas fa-lock"></i>
           </span>
-          </p>
-        </div>
-        <div className="field">
-          <label className="label">Password:</label>
-          <p className="control has-icons-left">
-            <input
-                className="input" 
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
-            <span className="icon is-small is-left">
-              <i className="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-        <button type="submit" className="button is-info is-rounded is-outlined is-medium">Login</button>
-      </form>
+        </p>
+      </div>
+      <button type="submit" className="button is-rounded is-outlined is-medium">Login</button>
+    </form>
   );
 }
 
