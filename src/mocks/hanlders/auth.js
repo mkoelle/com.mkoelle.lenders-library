@@ -13,13 +13,13 @@ const auth = [
             req?.body?.ConfirmationCode?.toLowerCase() === 'bad') return res(ctx.status(403))
 
         // Login Request
-        if (req?.body?.AuthFlow) return res(ctx.json(mockAuthResult))
+        if (req?.body?.AuthFlow) return res(ctx.json(mockPasswordVerififier))
         // Passsword Verification
         if (req?.body?.ChallengeName) return res(ctx.json(mockAuthResult))
         // User Registration
-        if (req?.body?.ValidationData) return res(ctx.status(200))
+        if (req?.body?.ValidationData) return res(ctx.json(mockRegistration))
         // OTP Validation
-        if (req?.body?.ConfirmationCode) return res(ctx.status(200))
+        if (req?.body?.ConfirmationCode) return res(ctx.json(mockOTPResponse))
         return res(ctx.status(400))
     })
 ]
@@ -46,10 +46,30 @@ const mockAuthResult = {
 const mockPasswordVerififier = {
     ChallengeName: "PASSWORD_VERIFIER",
     ChallengeParameters: {
-        // SALT: "53a85484a4f73d8bb52ccd871e21b077",
-        // SECRET_BLOCK: "rEjtcMaMeDVhbS3Zg3DVqR/hxgdWrdmYnTKAJu2CDNUal4naloXAURhcyHplxXuov06nzS6vuTPGt2kYwH066o4TsGwtNqGBUzrd8uBjc0Q/CVPoSVN8Ld/HT9RvKSfs/PrH1OE42ytpzb+HuLYKJ/fe+nKAzkd0ILMuQbIYkA2QJxgsxxlpzTpsGTUEZmT31D7iDL0YvW6sijhiRUoyph96RoD2zt6pKGP/9t1Vloka70FtVwzcK6KQqdR+UTElYeueVhJFR0MPu8/qN3qBxSu3pekNuuDWZTkmJWG12EJ/yaAUF8bztIZTeOJURAJkVAzuX/lU3YMux+4G3uDyIM/Igu7l7YGuuS6EaHkWVlnVFZPX+9dMWvcF8urIiP/Qcd3C0HiF/SxImBHv1c/IYuSDAbTHtdV412QuCHGWLpw7nIiZhIVvuwP1akFrp3Z9XwrikAqFe22Xz7z+TqVgbb00hFpAxB2KNwAG7D/V0LYMBqlPS9ll1oN1YcR+nQ5R3Xv9Wudj+x7oLyPC+CYAqGCuZzdkQWEOMJiB8ms+DhEpU8Kaak6pyHNUriUmDA/bbdssevKLEJwV5y9ohZ6gVp/x85Oj48IsmdT0K+GI7X9KaflyEuOUA/ry4qF+HraJWWja0cBU3cGIb0ZI4HHRqUXYt3ls8Ti5z6IhnRdWGj0GTS5/tUuTR8Pp8MVGtsowWiDhvLKG4VOexVdOU5DuGMyNqK5i1TnBoRTRmHCmJja0I/rppJn1r7YX130uFakMpq21v0AleEe1SSsFEeyloNYKiBj517URBmbO/KEZBRo+GTPzvT410YMgjcIezwMtvUHIXUNC169+53SJh+3sVElt4nZjnzH049T3uBUoNJxPUPqOGZtKjx+JUWraNzxTBJnhTma4PnVu8MxWJ+C2q0D+4aMR32sezK8iKfU51XQxH8CShHn5UxM00dmu7GqRQDcmGsb8DR/PEXhz6P5u5sCv150VTomcyhJKJspiP5gaYYe5bBgpRb3RCFf5DUBVnqClSrA6rpeT6L59rYAtUQ3PDHJICHIh33IDU1Kip+mYycun94YP4jPByri1mUi6PwHqtr/YBk/E1F5UwmsIXT1dtjvJo3bYquOIRciH2G9wf+0nNTIopCJ2gIA7fjiEtm119z7z3Yd1AxYMVaeaQfwynsVGEFcJu3X9T49HkzHgHW270rg3nZ0RuMTIkUyCH1Gtk+p9xI7Plp87QzzFQZiQb+sOXRg6MwehFo3jjlChe94AJr4CAbCDofPFnIMKTX24KaBxecUtTpVSKFVc68gal/fAuOx3khZgazOkR5k/5FNe8UpdBtZ7rodaNrM97fe5B3YiwmfYQZMTR3kKaI4x/nmLKceEfP6wzh+9MI+SFyrjpdIRlLP7ooV5xa4Nhh/eTfm9P64R+kZg7/CBMIbDn7/GKGJdwgm5sv0uQpenkRNSjUeqk67ERavVb8zBjKjIHz+eFwd207/fN007qlLOa0Ues8kl5+2YYvHP7WVklLEtRHsEbeFEGLOphon9t3slIwspirwXxmYxNiSUIlvj+2cSemuAFEroGQ+zc84RirboOx7ovZdNI9A25pYV1Hloj2ygl/WQjYPmFY3RCAvbChUcCY5TDi07CdDDESGR8yg+CU76eQYAJFDd5aCW3E2lgEHKgDvh/6mhxIqXMLHanS3+fo8wjcilmhN3jBEw1qE2QdKdFBza+A==",
-        // SRP_B: "8e4568f1d600e98e55c86e1f1fec63f586b253293490f1ae600468448ba3d0c98d816d857faabe39d30bab47cbadb01623dc5038927e1e9b505fc42cc4c10b54c4b48e4f03f20118a121bc4a21da11813320c3e400109860adc4c3f7b2951166b2c93fdbe7f942210f7eb0ea306c70fcdc984e65488313cb38051211b376140f3ba31d4b955a83abad18ac83f822438c0b251954089ae83192496f118662fa8754262ecf94b8ed229f0e37cd5936647e693ee0ea629c8382e8140ac294a4e99bdc438f8ce711794f599d0e36388c7826ac9f149ac6e9a9d5f0f98d87643ae57c4653e12259356c08047b03087e8bc4ac47dd9e08eb7e2c01b6cdec3f8882c2842fa3115d091178b28b5cb0566a8935374b9933cc17b98fe389335cf97f23630eb096ad36fc3dc28cf1ee56a6ac7a55ca40ae486a2b8da03455eb6f67c524379c1146ed09c81bab387e958135c7a815657030b44b7821c407f0ee43bc55c83eb596e9ae2ce7aabead8241c9a99377203bacfb796bbcb23f4edf7d9f55b961ed38",
-        // USERNAME: "testguy",
-        // USER_ID_FOR_SRP: "testguy"
+        SALT: "53a85484a4f73d8bb52ccd871e21b077",
+        SECRET_BLOCK: "rEjtcMaMeDVhbS3Zg3DVqR/hxgdWrdmYnTKAJu2CDNUal4naloXAURhcyHplxXuov06nzS6vuTPGt2kYwH066o4TsGwtNqGBUzrd8uBjc0Q/CVPoSVN8Ld/HT9RvKSfs/PrH1OE42ytpzb+HuLYKJ/fe+nKAzkd0ILMuQbIYkA2QJxgsxxlpzTpsGTUEZmT31D7iDL0YvW6sijhiRUoyph96RoD2zt6pKGP/9t1Vloka70FtVwzcK6KQqdR+UTElYeueVhJFR0MPu8/qN3qBxSu3pekNuuDWZTkmJWG12EJ/yaAUF8bztIZTeOJURAJkVAzuX/lU3YMux+4G3uDyIM/Igu7l7YGuuS6EaHkWVlnVFZPX+9dMWvcF8urIiP/Qcd3C0HiF/SxImBHv1c/IYuSDAbTHtdV412QuCHGWLpw7nIiZhIVvuwP1akFrp3Z9XwrikAqFe22Xz7z+TqVgbb00hFpAxB2KNwAG7D/V0LYMBqlPS9ll1oN1YcR+nQ5R3Xv9Wudj+x7oLyPC+CYAqGCuZzdkQWEOMJiB8ms+DhEpU8Kaak6pyHNUriUmDA/bbdssevKLEJwV5y9ohZ6gVp/x85Oj48IsmdT0K+GI7X9KaflyEuOUA/ry4qF+HraJWWja0cBU3cGIb0ZI4HHRqUXYt3ls8Ti5z6IhnRdWGj0GTS5/tUuTR8Pp8MVGtsowWiDhvLKG4VOexVdOU5DuGMyNqK5i1TnBoRTRmHCmJja0I/rppJn1r7YX130uFakMpq21v0AleEe1SSsFEeyloNYKiBj517URBmbO/KEZBRo+GTPzvT410YMgjcIezwMtvUHIXUNC169+53SJh+3sVElt4nZjnzH049T3uBUoNJxPUPqOGZtKjx+JUWraNzxTBJnhTma4PnVu8MxWJ+C2q0D+4aMR32sezK8iKfU51XQxH8CShHn5UxM00dmu7GqRQDcmGsb8DR/PEXhz6P5u5sCv150VTomcyhJKJspiP5gaYYe5bBgpRb3RCFf5DUBVnqClSrA6rpeT6L59rYAtUQ3PDHJICHIh33IDU1Kip+mYycun94YP4jPByri1mUi6PwHqtr/YBk/E1F5UwmsIXT1dtjvJo3bYquOIRciH2G9wf+0nNTIopCJ2gIA7fjiEtm119z7z3Yd1AxYMVaeaQfwynsVGEFcJu3X9T49HkzHgHW270rg3nZ0RuMTIkUyCH1Gtk+p9xI7Plp87QzzFQZiQb+sOXRg6MwehFo3jjlChe94AJr4CAbCDofPFnIMKTX24KaBxecUtTpVSKFVc68gal/fAuOx3khZgazOkR5k/5FNe8UpdBtZ7rodaNrM97fe5B3YiwmfYQZMTR3kKaI4x/nmLKceEfP6wzh+9MI+SFyrjpdIRlLP7ooV5xa4Nhh/eTfm9P64R+kZg7/CBMIbDn7/GKGJdwgm5sv0uQpenkRNSjUeqk67ERavVb8zBjKjIHz+eFwd207/fN007qlLOa0Ues8kl5+2YYvHP7WVklLEtRHsEbeFEGLOphon9t3slIwspirwXxmYxNiSUIlvj+2cSemuAFEroGQ+zc84RirboOx7ovZdNI9A25pYV1Hloj2ygl/WQjYPmFY3RCAvbChUcCY5TDi07CdDDESGR8yg+CU76eQYAJFDd5aCW3E2lgEHKgDvh/6mhxIqXMLHanS3+fo8wjcilmhN3jBEw1qE2QdKdFBza+A==",
+        SRP_B: "8e4568f1d600e98e55c86e1f1fec63f586b253293490f1ae600468448ba3d0c98d816d857faabe39d30bab47cbadb01623dc5038927e1e9b505fc42cc4c10b54c4b48e4f03f20118a121bc4a21da11813320c3e400109860adc4c3f7b2951166b2c93fdbe7f942210f7eb0ea306c70fcdc984e65488313cb38051211b376140f3ba31d4b955a83abad18ac83f822438c0b251954089ae83192496f118662fa8754262ecf94b8ed229f0e37cd5936647e693ee0ea629c8382e8140ac294a4e99bdc438f8ce711794f599d0e36388c7826ac9f149ac6e9a9d5f0f98d87643ae57c4653e12259356c08047b03087e8bc4ac47dd9e08eb7e2c01b6cdec3f8882c2842fa3115d091178b28b5cb0566a8935374b9933cc17b98fe389335cf97f23630eb096ad36fc3dc28cf1ee56a6ac7a55ca40ae486a2b8da03455eb6f67c524379c1146ed09c81bab387e958135c7a815657030b44b7821c407f0ee43bc55c83eb596e9ae2ce7aabead8241c9a99377203bacfb796bbcb23f4edf7d9f55b961ed38",
+        USERNAME: "testguy",
+        USER_ID_FOR_SRP: "testguy"
     }
+}
+
+const mockRegistration = {
+    __type: "ResourceNotFoundException",
+    message: "User pool client 45xx55xxxxxxxxxx6xx444xxxx does not exist."
+}
+
+const mockRegistration2 = {
+    CodeDeliveryDetails: {
+        AttributeName: "email",
+        DeliveryMedium: "EMAIL",
+        Destination: "m***@n***"
+    },
+    UserConfirmed: false,
+    UserSub: "109e6ebb-3e64-4027-8cfe-251e0190c3f6"
+}
+
+const mockOTPResponse = {
+    __type: "CodeMismatchException",
+    message: "Invalid verification code provided, please try again."
 }
