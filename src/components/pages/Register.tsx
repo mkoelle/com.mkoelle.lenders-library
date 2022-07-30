@@ -84,7 +84,7 @@ function Register() {
         <i className="fas fa-user-astronaut"></i>
         </span>
         </p>
-        {!nameValid && nameTouched && <p className='help'>please provide a valid name.</p>}
+        {!nameValid && nameTouched && <p className='help'>please provide a name.</p>}
       </div>
 
       <div className="field">
@@ -102,7 +102,7 @@ function Register() {
         <i className="fas fa-dragon"></i>
         </span>
         </p>
-        {!usernameValid && usernameTouched && <p className='help'>please provide a valid user name.</p>}
+        {!usernameValid && usernameTouched && <p className='help'>please provide a user name.</p>}
       </div>
 
       <div className="field">
@@ -143,7 +143,6 @@ function Register() {
               type="text"
               value={OTP}
               onChange={(e) => setOTP(e.target.value)}
-              
               placeholder="OTP"
             />
           <span className="icon is-small is-left">
