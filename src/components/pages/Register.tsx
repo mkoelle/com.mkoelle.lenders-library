@@ -17,7 +17,7 @@ function Register() {
   const emailValid = emailRegex.test(email.trim())
   const[password, setPassword] = useState('');
   const [passwordTouched, setPasswordTouched] = useState(false);
-  const passwordValid = passwordRegex.test(email.trim())
+  const passwordValid = passwordRegex.test(password.trim())
   const [isVerifying, setIsVerifying] = useState(false);
   const [OTP, setOTP] = useState('');
   const { signUp, confirmRegistration } = useContext(AccountContext);
