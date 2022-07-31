@@ -29,9 +29,10 @@ function Register() {
     setNameTouched(true)
     setPasswordTouched(true)
     setUsernameTouched(true)
-    if(!emailValid || usernameValid || passwordValid || nameValid) return
+    if(!emailValid || !usernameValid || !passwordValid || !nameValid) return
     signUp(username,password,email,name)
-    .catch((_err: any) => {
+    .catch((err: any) => {
+      console.log(err)
       return
     })
     setIsVerifying(true)

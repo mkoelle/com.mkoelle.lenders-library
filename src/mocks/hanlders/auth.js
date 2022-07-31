@@ -5,7 +5,8 @@ const authUrl = 'https://cognito-idp.us-east-1.amazonaws.com/'
 
 const auth = [
     rest.post(authUrl, async (req, res, ctx) => {
-        // return await capturePassthrough(ctx, req, res)
+        return req.passthrough()
+        return await capturePassthrough(ctx, req, res)
 
         // fail on any request with a username or OTP of 'BAD'
         if (req?.body?.AuthParameters?.USERNAME?.toLowerCase() === 'bad' ||

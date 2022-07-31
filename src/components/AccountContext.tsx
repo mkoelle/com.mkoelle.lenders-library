@@ -46,16 +46,17 @@ const Account = (props: { children: string | number | boolean | ReactElement<any
         Username,
         Password,
       });
-
-      user.authenticateUser(authDetails, {
+      return user.authenticateUser(authDetails, {
         onSuccess: (result) => {
           setIsLoggedIm(true)
           resolve(result);
         },
         onFailure: (err) => {
+          setIsLoggedIm(false)
           reject(err);
         },
         newPasswordRequired: (data) => {
+          setIsLoggedIm(false)
           resolve(data);
         },
       });

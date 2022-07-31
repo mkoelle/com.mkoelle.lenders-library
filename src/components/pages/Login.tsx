@@ -1,28 +1,30 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { AccountContext } from '../AccountContext';
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const navigate = useNavigate()
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const username = useRef<HTMLInputElement>(null)
+  const password = useRef<HTMLInputElement>(null)
   const [authError, setAuthError] = useState<{code :string, name: string}|undefined>(undefined);
 
   const { authenticate } = useContext(AccountContext);
 
-  const onSubmit = (event: { preventDefault: () => void; }) => {
+  const onSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    authenticate(username, password)
-    .then(() => {
+    await authenticate(username.current?.value, password.current?.value)
+    .then((data:any) => {
       setAuthError(undefined)
       navigate('/')
     })
-    .catch((err: {code :string, name: string}) => {
+    .catch((err: any) => {
       setAuthError(err)
+      console.log(err)
     });
   };
   let error
   if (authError){
+    console.log(authError)
     let message =  "Login failed, please check your username or password"
     if(authError?.code !== "UserNotFoundException" &&
       authError?.code !== "NotAuthorizedException") message = JSON.stringify(authError)
@@ -45,8 +47,7 @@ function Login() {
         <input
             className="input" 
             type="text" 
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            ref={username}
             placeholder="User Name"
           />
         <span className="icon is-small is-left">
@@ -60,8 +61,7 @@ function Login() {
           <input
               className="input" 
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              ref={password}
               placeholder="Password"
             />
           <span className="icon is-small is-left">
